@@ -79,6 +79,10 @@ function iniciarMenu() {
         });
     }
 
+    if (["contato", "admin"].includes(pagina)) {
+        document.getElementById("cta-contato")?.remove();
+    }
+
     document.querySelectorAll("[data-ano]").forEach(el => {
         el.textContent = new Date().getFullYear();
     });
@@ -213,12 +217,39 @@ function cardProjeto(p) {
     </article>`;
 }
 
-function renderProjetos() {
+/* ── Projetos publicados pelo painel de admin (Supabase) ────── */
+function supabaseConfigurado() {
+    return typeof SUPABASE_URL !== "undefined" && SUPABASE_URL && SUPABASE_ANON_KEY;
+}
+
+async function buscarProjetosPublicados() {
+    if (!supabaseConfigurado()) return [];
+    try {
+        const r = await fetch(`${SUPABASE_URL}/rest/v1/projetos?select=*&publicado=eq.true&order=created_at.desc`, {
+            headers: { apikey: SUPABASE_ANON_KEY, Authorization: `Bearer ${SUPABASE_ANON_KEY}` }
+        });
+        if (!r.ok) throw new Error(r.status);
+        const linhas = await r.json();
+        return linhas.map(l => ({
+            titulo: l.titulo, semestre: l.semestre, tipo: l.tipo, descricao: l.descricao,
+            tags: l.tags || [], link: l.link, foto: l.foto_url, icone: l.icone
+        }));
+    } catch (err) {
+        console.error("Não foi possível carregar os projetos do Supabase:", err);
+        return [];
+    }
+}
+
+async function renderProjetos() {
     const area = document.getElementById("projetos-conteudo");
-    if (!area || typeof PROJETOS === "undefined") return;
+    if (!area) return;
+    area.innerHTML = `<p class="text-center text-gray-500"><i class="fas fa-spinner fa-spin mr-2"></i>Carregando…</p>`;
+
+    const publicados = await buscarProjetosPublicados();
+    const TODOS = [...publicados, ...(typeof PROJETOS !== "undefined" ? PROJETOS : [])];
 
     const filtros = document.getElementById("filtros-projetos");
-    const tipos = [...new Set(PROJETOS.map(p => p.tipo))];
+    const tipos = [...new Set(TODOS.map(p => p.tipo))];
     if (filtros) {
         filtros.innerHTML = `<button class="filter-btn active px-5 py-2 rounded-full font-bold text-sm" data-filtro="todos">Todos</button>` +
             tipos.map(t => `<button class="filter-btn px-5 py-2 rounded-full font-bold text-sm" data-filtro="${escapar(t)}">${escapar(t)}</button>`).join("");
@@ -226,7 +257,7 @@ function renderProjetos() {
 
     function desenhar() {
         const tipo = filtros?.querySelector(".filter-btn.active")?.dataset.filtro || "todos";
-        const lista = PROJETOS.filter(p => tipo === "todos" || p.tipo === tipo);
+        const lista = TODOS.filter(p => tipo === "todos" || p.tipo === tipo);
         const semestres = [...new Set(lista.map(p => p.semestre))].sort().reverse();
 
         area.innerHTML = semestres.map(s => `
@@ -270,15 +301,6 @@ function iniciarFormulario() {
     const status = document.getElementById("form-status");
     const botao = form.querySelector('button[type="submit"]');
 
-    const perfil = form.querySelector('[name="perfil"]');
-    const campoInstituicao = document.getElementById("campo-instituicao");
-    function atualizarCampos() {
-        const precisa = ["Escola ou ONG", "Empresa / possível parceira"].includes(perfil.value);
-        campoInstituicao.classList.toggle("hidden", !precisa);
-        campoInstituicao.querySelector("input").required = precisa;
-    }
-    perfil?.addEventListener("change", atualizarCampos);
-
     function mostrar(msg, tipo) {
         status.className = "mt-4 rounded-lg px-4 py-3 text-sm " +
             (tipo === "ok" ? "bg-green-50 text-green-800" : tipo === "erro" ? "bg-red-50 text-red-800" : "bg-[#Ded9e2] text-[#682857]");
@@ -293,7 +315,9 @@ function iniciarFormulario() {
         const dados = Object.fromEntries(new FormData(form).entries());
         if (dados._honey) return; // robô
 
-        dados._subject = `[Site WomanTech] ${dados.perfil} — ${dados.assunto}`;
+        dados._subject = `[Site WomanTech] Solicitação de ${dados.instituicao || dados.nome} — ${dados.cidade_uf}`;
+        dados._replyto = dados.email;
+        if (!dados.local_atividade) dados.local_atividade = "Não informado";
         botao.disabled = true;
         botao.classList.add("opacity-70");
         mostrar("Enviando sua mensagem…", "info");
@@ -307,8 +331,7 @@ function iniciarFormulario() {
             .then(({ ok, j }) => {
                 if (!ok || String(j.success) === "false") throw new Error(j.message || "Falha no envio");
                 form.reset();
-                atualizarCampos();
-                mostrar("Mensagem enviada! Vamos responder no seu e-mail em breve. 💜", "ok");
+                mostrar("Solicitação enviada! Vamos montar uma proposta e responder no seu e-mail. 💜", "ok");
             })
             .catch(() => {
                 mostrar("Não conseguimos enviar agora. Tente de novo ou escreva para womantech.fci@gmail.com.", "erro");

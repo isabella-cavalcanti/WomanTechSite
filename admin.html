@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área administrativa - Woman Tech</title>
+    <meta name="robots" content="noindex">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=Raleway:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/admin.js" defer></script>
+</head>
+
+<body data-page="admin">
+    <div id="header"></div>
+
+    <main class="pt-32 pb-16 min-h-screen">
+        <div class="container mx-auto px-4">
+
+            <!-- Aviso: Supabase não configurado -->
+            <section id="tela-config" class="hidden max-w-xl mx-auto bg-white rounded-2xl shadow-lg p-10 text-center">
+                <div class="text-5xl text-[#682857] mb-4"><i class="fas fa-plug"></i></div>
+                <h1 class="text-2xl font-bold text-[#682857] mb-3">Painel ainda não conectado</h1>
+                <p class="text-gray-600">Preencha <code class="bg-[#F5f5f5] px-2 py-1 rounded">js/config.js</code> com os dados do Supabase e rode <code class="bg-[#F5f5f5] px-2 py-1 rounded">supabase/setup.sql</code>. O passo a passo está no README.</p>
+            </section>
+
+            <!-- Login -->
+            <section id="tela-login" class="hidden max-w-md mx-auto">
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                    <div class="bg-gradient-to-br from-[#682857] to-[#8d5e81] text-white p-8 text-center">
+                        <div class="w-16 h-16 mx-auto rounded-full bg-white/20 flex items-center justify-center text-2xl mb-3"><i class="fas fa-lock"></i></div>
+                        <h1 class="text-2xl font-bold">Área administrativa</h1>
+                        <p class="opacity-90 text-sm mt-1">Acesso da equipe WomanTech para publicar projetos e eventos</p>
+                    </div>
+                    <form id="form-login" class="p-8 space-y-4" novalidate>
+                        <div><label for="login-email" class="block text-sm font-bold text-gray-700 mb-1">E-mail</label>
+                            <input id="login-email" type="email" required autocomplete="username" class="form-field" placeholder="seu@email.com"></div>
+                        <div><label for="login-senha" class="block text-sm font-bold text-gray-700 mb-1">Senha</label>
+                            <input id="login-senha" type="password" required autocomplete="current-password" class="form-field" placeholder="••••••••"></div>
+                        <button type="submit" class="w-full bg-[#682857] text-white font-bold py-3 rounded-lg hover:bg-[#8d5e81] transition">Entrar</button>
+                        <button type="button" id="btn-esqueci" class="w-full text-sm text-[#682857] font-bold hover:underline">Esqueci minha senha</button>
+                        <p id="login-status" role="status" hidden></p>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Nova senha (link de recuperação) -->
+            <section id="tela-nova-senha" class="hidden max-w-md mx-auto bg-white rounded-2xl shadow-lg p-8">
+                <h1 class="text-2xl font-bold text-[#682857] mb-4">Criar nova senha</h1>
+                <form id="form-nova-senha" class="space-y-4" novalidate>
+                    <div><label for="nova-senha" class="block text-sm font-bold text-gray-700 mb-1">Nova senha (mínimo 8 caracteres)</label>
+                        <input id="nova-senha" type="password" minlength="8" required autocomplete="new-password" class="form-field"></div>
+                    <button type="submit" class="w-full bg-[#682857] text-white font-bold py-3 rounded-lg hover:bg-[#8d5e81] transition">Salvar senha</button>
+                    <p id="nova-senha-status" role="status" hidden></p>
+                </form>
+            </section>
+
+            <!-- Painel -->
+            <section id="tela-painel" class="hidden">
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
+                    <div>
+                        <h1 class="text-3xl font-bold text-[#682857]">Projetos &amp; Eventos</h1>
+                        <p class="text-gray-600">Olá, <b id="admin-nome"></b>. O que você publicar aqui aparece na hora no site.</p>
+                    </div>
+                    <div class="flex gap-3">
+                        <a href="projetos.html" target="_blank" class="border-2 border-[#682857] text-[#682857] font-bold px-5 py-2 rounded-full hover:bg-[#F5f5f5]"><i class="fas fa-external-link-alt mr-2"></i>Ver no site</a>
+                        <button id="btn-sair" class="bg-[#682857] text-white font-bold px-5 py-2 rounded-full hover:bg-[#8d5e81]"><i class="fas fa-sign-out-alt mr-2"></i>Sair</button>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 xl:grid-cols-[1fr_380px] gap-8 items-start">
+                    <!-- Formulário -->
+                    <div class="bg-white rounded-2xl shadow-lg p-8">
+                        <div class="flex items-center justify-between mb-6">
+                            <h2 id="form-titulo" class="text-2xl font-bold text-[#682857]">Nova publicação</h2>
+                            <button type="button" id="btn-cancelar" class="hidden text-sm font-bold text-gray-500 hover:text-[#682857]"><i class="fas fa-times mr-1"></i>Cancelar edição</button>
+                        </div>
+                        <form id="form-projeto" class="space-y-4" novalidate>
+                            <div><label for="p-titulo" class="block text-sm font-bold text-gray-700 mb-1">Título *</label>
+                                <input id="p-titulo" name="titulo" required minlength="3" maxlength="150" class="form-field" placeholder="Ex.: Oficina de lógica no CEPAC"></div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div><label for="p-semestre" class="block text-sm font-bold text-gray-700 mb-1">Semestre *</label>
+                                    <select id="p-semestre" name="semestre" required class="form-field"></select></div>
+                                <div><label for="p-tipo" class="block text-sm font-bold text-gray-700 mb-1">Tipo *</label>
+                                    <select id="p-tipo" name="tipo" required class="form-field">
+                                        <option>Oficina</option><option>Evento</option><option>Palestra</option><option>Curso</option><option>Visita</option><option>Parceria</option><option>Material</option>
+                                    </select></div>
+                            </div>
+                            <div><label for="p-descricao" class="block text-sm font-bold text-gray-700 mb-1">Descrição * <span id="contador" class="font-normal text-gray-400">0/2000</span></label>
+                                <textarea id="p-descricao" name="descricao" required maxlength="2000" rows="6" class="form-field" placeholder="O que aconteceu, quem participou, quando e onde."></textarea></div>
+                            <div><label for="p-tags" class="block text-sm font-bold text-gray-700 mb-1">Tags <span class="font-normal text-gray-400">(separe por vírgula)</span></label>
+                                <input id="p-tags" name="tags" class="form-field" placeholder="Ex.: Programação, Jovens, CEPAC"></div>
+                            <div><label for="p-link" class="block text-sm font-bold text-gray-700 mb-1">Link "Saiba mais"</label>
+                                <input id="p-link" name="link" type="url" class="form-field" placeholder="https://..."></div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="p-foto" class="block text-sm font-bold text-gray-700 mb-1">Foto de capa</label>
+                                    <input id="p-foto" type="file" accept="image/*" class="block w-full text-sm text-gray-600 file:mr-3 file:py-2 file:px-4 file:rounded-full file:border-0 file:bg-[#Ded9e2] file:text-[#682857] file:font-bold hover:file:bg-[#D3d3d3]">
+                                    <button type="button" id="btn-remover-foto" class="hidden mt-2 text-sm text-red-700 font-bold hover:underline"><i class="fas fa-trash mr-1"></i>Remover foto</button>
+                                </div>
+                                <div><label for="p-icone" class="block text-sm font-bold text-gray-700 mb-1">Ícone <span class="font-normal text-gray-400">(se não tiver foto)</span></label>
+                                    <select id="p-icone" name="icone" class="form-field">
+                                        <option value="fa-laptop-code">Computador</option><option value="fa-chalkboard-teacher">Aula</option><option value="fa-microphone">Palestra</option>
+                                        <option value="fa-users">Grupo</option><option value="fa-handshake">Parceria</option><option value="fa-graduation-cap">Formatura</option>
+                                        <option value="fa-robot">IA</option><option value="fa-shield-alt">Segurança</option><option value="fa-star">Destaque</option>
+                                    </select></div>
+                            </div>
+
+                            <label class="flex items-center gap-3 pt-2"><input id="p-publicado" type="checkbox" checked class="w-5 h-5 accent-[#682857]">
+                                <span class="text-gray-700">Publicar no site (desmarque para salvar como rascunho)</span></label>
+
+                            <div class="flex flex-wrap gap-3 pt-2">
+                                <button type="submit" id="btn-salvar" class="bg-[#682857] text-white font-bold px-8 py-3 rounded-lg hover:bg-[#8d5e81] transition"><i class="fas fa-check mr-2"></i>Publicar</button>
+                            </div>
+                            <p id="projeto-status" role="status" hidden></p>
+                        </form>
+                    </div>
+
+                    <!-- Prévia -->
+                    <div class="xl:sticky xl:top-28">
+                        <p class="text-sm font-bold text-gray-500 uppercase tracking-wide mb-3">Prévia do card</p>
+                        <div id="previa"></div>
+                    </div>
+                </div>
+
+                <!-- Lista -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 mt-10">
+                    <h2 class="text-2xl font-bold text-[#682857] mb-1">Publicações</h2>
+                    <p class="text-sm text-gray-500 mb-6">Os projetos antigos (até 2025/2) ficam em <code>js/dados-projetos.js</code> e não aparecem nesta lista.</p>
+                    <div id="lista-projetos" class="divide-y divide-gray-100"></div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <div id="footer"></div>
+</body>
+</html>

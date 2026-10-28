@@ -11,16 +11,37 @@ Site do **WomanTech**, projeto de extensão da Faculdade de Computação e Infor
 | Equipe | `equipe.html` | Coordenação, professoras, bolsistas/voluntárias e ex-integrantes |
 | Projetos & Eventos | `projetos.html` | Tudo o que já foi feito, por semestre e por tipo |
 | Materiais | `materiais.html` | E-books para baixar |
-| Contato | `contato.html` | Formulário (perfil, público-alvo, cidade/estado) |
+| Contato | `contato.html` | Formulário "Leve o Woman Tech até você" (quem é, público e local, como ajudar) |
+| Área administrativa | `admin.html` | Login de admin para publicar em Projetos & Eventos |
 
 ## Como atualizar (sem mexer no HTML)
 
 - **Adicionar alguém na equipe:** edite `js/dados-equipe.js` e copie um bloco `{ ... }`.
   Quando a pessoa sair do projeto, troque `categoria` para `"ex-integrante"`.
-- **Adicionar um projeto ou evento:** edite `js/dados-projetos.js` e coloque o novo bloco **no topo** da lista.
+- **Adicionar um projeto ou evento:** use o painel em **Entrar** (`admin.html`) — não precisa mexer no código.
+  Os projetos antigos (até 2025/2) continuam em `js/dados-projetos.js`.
 - **Fotos:** salve em `assets/image/` e use o caminho no campo `foto`.
 
 O menu e o rodapé ficam em `partials/header.html` e `partials/footer.html` e valem para todas as páginas.
+
+## Painel de admin (Projetos & Eventos)
+
+O painel usa o [Supabase](https://supabase.com) (plano gratuito) para login, banco de dados e fotos.
+Configuração (uma vez só):
+
+1. Crie uma conta e um projeto no Supabase.
+2. Em **SQL Editor → New query**, cole o conteúdo de `supabase/setup.sql` e clique em **Run**.
+   Isso cria as tabelas, a pasta de fotos e as regras de segurança: qualquer pessoa **lê** os projetos publicados,
+   e só quem está na tabela `admins` **cria, edita ou apaga**.
+3. Em **Authentication → Sign In / Providers**, desligue **Allow new users to sign up** (só a coordenação cria contas).
+4. Em **Authentication → Users → Add user**, crie o usuário de cada administradora (e-mail + senha).
+5. No SQL Editor, rode a linha do final do `setup.sql` com o e-mail de cada administradora.
+6. Em **Project Settings → API**, copie a **Project URL** e a **anon public key** para `js/config.js`.
+7. Em **Authentication → URL Configuration**, coloque o endereço do site em **Site URL**
+   (ex.: `https://isabella-cavalcanti.github.io/WomanTechSite/admin.html`) para o "Esqueci minha senha" funcionar.
+
+No painel dá para publicar (com foto, que é reduzida automaticamente), salvar rascunho, editar, ocultar e apagar.
+Nunca coloque a chave `service_role` no site.
 
 ## Formulário de contato
 
