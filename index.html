@@ -1,250 +1,163 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>WomanTech | Tecnologia também é lugar de mulher</title>
-  <meta name="description" content="WomanTech é um programa de extensão que inspira, capacita e conecta mulheres ao universo da tecnologia por meio de oficinas, projetos e comunidade." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Woman Tech - Impulsionando Mulheres na Tecnologia</title>
+    <meta name="description" content="O WomanTech é um projeto de extensão da FCI-Mackenzie, parceiro do Meninas Digitais (SBC), que desperta o interesse de meninas e mulheres pela tecnologia.">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=Raleway:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js"></script>
 </head>
-<body>
 
-  <!-- HEADER -->
-  <header class="header">
-    <a href="index.html" class="logo">
-      <img src="imagens/logo.png" alt="WomanTech">
-      <span class="logo-text">WomanTech</span>
-    </a>
-    <nav class="nav" id="nav">
-      <a href="index.html" class="active">Home</a>
-      <a href="sobre.html">Sobre</a>
-      <a href="oficinas.html">Oficinas</a>
-      <a href="equipe.html">Equipe</a>
-      <a href="contato.html">Contato</a>
-    </nav>
-    <button class="menu-btn" aria-label="Menu">☰</button>
-  </header>
+<body data-page="inicio">
+    <div id="header"></div>
 
-  <main>
+    <main>
+    <section id="home" class="relative min-h-screen flex items-center pt-16 overflow-hidden bg-gradient-to-br from-[#682857] to-[#8d5e81]">
+        <div class="blob bg-[#Ded9e2] w-96 h-96 top-20 left-20 animate-pulse"></div>
+        <div class="blob bg-[#8d5e81] w-80 h-80 bottom-20 right-20 animate-pulse" style="animation-delay: 2s;"></div>
 
-    <!-- HERO -->
-    <section class="hero">
-      <div class="hero-orb"></div>
-
-      <div class="hero-content">
-        <div class="hero-tag">
-          <span class="dot"></span>
-          Programa de Extensão &nbsp;·&nbsp; FCI &nbsp;·&nbsp; Desde 2024
-        </div>
-
-        <h1>
-          Tecnologia<br>
-          <span class="gradient-text">também é</span><br>
-          lugar de mulher.
-        </h1>
-
-        <p class="hero-desc">
-          A WomanTech inspira, capacita e conecta mulheres que querem dar os primeiros
-          passos no universo da tecnologia — de forma simples, acolhedora e transformadora.
-        </p>
-
-        <div class="hero-btns">
-          <a href="contato.html" class="btn btn-primary">✦ Quero participar</a>
-          <a href="oficinas.html" class="btn btn-secondary">Ver oficinas</a>
-        </div>
-      </div>
-
-      <div class="hero-visual">
-        <div class="hero-card">
-          <div class="terminal-header">
-            <span class="t-dot r"></span>
-            <span class="t-dot y"></span>
-            <span class="t-dot g"></span>
-            <span class="terminal-label">womantech.sh</span>
-          </div>
-          <div class="code-box">
-            <div>&lt;<span class="kw">womanTech</span>&gt;</div>
-            <div>&nbsp;&nbsp;<span class="fn">aprender</span><span class="pa">();</span> <span class="cm">// sempre</span></div>
-            <div>&nbsp;&nbsp;<span class="fn">criar</span><span class="pa">();</span> <span class="cm">// sem medo</span></div>
-            <div>&nbsp;&nbsp;<span class="fn">transformar</span><span class="pa">();</span></div>
-            <div>&nbsp;&nbsp;<span class="fn">conectar</span><span class="pa">();</span><span class="cursor"></span></div>
-            <div>&lt;/<span class="kw">womanTech</span>&gt;</div>
-          </div>
-        </div>
-        <div class="hero-badge">
-          <strong>200+</strong>
-          <span>mulheres alcançadas</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- STATS -->
-    <section class="stats">
-      <div class="stat-item reveal">
-        <span class="stat-number" data-target="200" data-suffix="+">200+</span>
-        <span class="stat-label">Mulheres<br>alcançadas</span>
-      </div>
-      <div class="stat-item reveal d1">
-        <span class="stat-number" data-target="3">3</span>
-        <span class="stat-label">Edições<br>realizadas</span>
-      </div>
-      <div class="stat-item reveal d2">
-        <span class="stat-number" data-target="7">7</span>
-        <span class="stat-label">Professoras<br>envolvidas</span>
-      </div>
-      <div class="stat-item reveal d3">
-        <span class="stat-number" data-target="2">2</span>
-        <span class="stat-label">Bolsas<br>PIBEX</span>
-      </div>
-    </section>
-
-    <!-- SOBRE -->
-    <section class="section">
-      <div class="about-grid">
-        <div class="about-text reveal">
-          <div class="section-tag">Sobre o Projeto</div>
-          <h2 class="section-title">Nascemos para aproximar mulheres da tecnologia.</h2>
-          <p>
-            A WomanTech é um <span class="hl">programa de extensão</span> da Faculdade de Computação e Informática,
-            criado em 2024 pela Profa. Marcilyanne Gois em parceria com o programa
-            <span class="hl">Meninas Digitais da SBC</span>.
-          </p>
-          <p>
-            Nosso objetivo é despertar o interesse do público feminino por cursos e carreiras em tecnologia,
-            mostrando que esse universo também é — e sempre foi — lugar de mulher.
-          </p>
-          <div class="feature-list">
-            <div class="feature-item"><span class="fi-icon">🎓</span>Oficinas práticas de programação, robótica e carreira</div>
-            <div class="feature-item"><span class="fi-icon">🤝</span>Networking com profissionais da área STEM</div>
-            <div class="feature-item"><span class="fi-icon">💡</span>Atendimento a alunas de ONGs, escolas públicas e mulheres em transição de carreira</div>
-            <div class="feature-item"><span class="fi-icon">🚀</span>Preparação para o mercado de trabalho em tecnologia</div>
-          </div>
-        </div>
-        <div class="about-visual reveal d2">
-          <div class="about-visual-card">
-            <p class="mission-quote">
-              "Despertar o interesse do público feminino por cursos e carreiras na área de tecnologia —
-              porque <span>a tecnologia pode ser uma ferramenta de liberdade,
-              carreira e transformação social.</span>"
-            </p>
-            <div class="partner-chip">
-              🤝 Parceria com Meninas Digitais / SBC
+        <div class="container mx-auto px-4 py-16 flex flex-col md:flex-row items-center justify-between relative z-10">
+            <div class="md:w-1/2 text-white mb-10 md:mb-0">
+                <span class="inline-block bg-white/15 text-white text-sm font-bold px-4 py-1 rounded-full mb-6">Projeto de extensão FCI · Mackenzie · desde 2024</span>
+                <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+                    Impulsionando
+                    <span class="text-[#F5f5f5] relative">
+                        Mulheres
+                        <svg class="absolute -bottom-2 left-0 w-full" height="10" viewBox="0 0 100 10" preserveAspectRatio="none">
+                            <path d="M0,0 Q50,10 100,0 L100,10 L0,10 Z" fill="#Ded9e2" opacity="0.5"></path>
+                        </svg>
+                    </span>
+                    na Tecnologia
+                </h1>
+                <p class="text-lg md:text-xl mb-8 opacity-90">
+                    Transformando o futuro através da inclusão e capacitação feminina no mundo tech.
+                    Junte-se a nós nessa jornada de inovação e empoderamento.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="sobre.html" class="btn-primary px-8 py-3 rounded-full font-bold">Conheça o Projeto</a>
+                    <a href="contato.html" class="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-[#682857] transition duration-300">Entre em Contato</a>
+                </div>
             </div>
-          </div>
+
+            <div class="md:w-1/2 flex justify-center">
+                <div class="relative w-[320px] h-[320px] md:w-[400px] md:h-[400px] flex items-center justify-center">
+                    <svg class="absolute top-0 left-0 z-0 w-full h-full" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <defs>
+                            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#F5f5f5;stop-opacity:1"></stop>
+                                <stop offset="100%" style="stop-color:#Ded9e2;stop-opacity:1"></stop>
+                            </linearGradient>
+                        </defs>
+                        <circle cx="200" cy="200" r="180" fill="url(#grad1)"></circle>
+                        <circle cx="120" cy="280" r="5" fill="white"></circle>
+                        <circle cx="280" cy="280" r="5" fill="white"></circle>
+                        <circle cx="320" cy="100" r="15" fill="#682857" opacity="0.7"></circle>
+                        <circle cx="340" cy="130" r="10" fill="#8d5e81" opacity="0.7"></circle>
+                        <circle cx="80" cy="100" r="15" fill="#682857" opacity="0.7"></circle>
+                        <circle cx="60" cy="130" r="10" fill="#8d5e81" opacity="0.7"></circle>
+                        <text x="50" y="50" font-family="monospace" font-size="10" fill="#682857" opacity="0.3">10110101</text>
+                        <text x="300" y="70" font-family="monospace" font-size="10" fill="#682857" opacity="0.3">01001010</text>
+                        <text x="70" y="350" font-family="monospace" font-size="10" fill="#682857" opacity="0.3">11001010</text>
+                        <text x="270" y="330" font-family="monospace" font-size="10" fill="#682857" opacity="0.3">10101100</text>
+                    </svg>
+                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10">
+                        <img src="assets/icons/Variação_logo_elíptica_fundo_branco-removebg-preview.png" alt="Logo WomanTech" class="w-40 h-40 md:w-48 md:h-48 object-contain">
+                    </div>
+                    <div class="absolute top-0 left-0 w-full h-full z-0">
+                        <div class="absolute w-16 h-16 rounded-full bg-[#682857] opacity-20 animate-ping" style="top: 20%; left: 70%; animation-duration: 3s;"></div>
+                        <div class="absolute w-12 h-12 rounded-full bg-[#8d5e81] opacity-20 animate-ping" style="top: 60%; left: 20%; animation-duration: 4s;"></div>
+                        <div class="absolute w-8 h-8 rounded-full bg-[#Ded9e2] opacity-20 animate-ping" style="top: 40%; left: 40%; animation-duration: 5s;"></div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+        <div class="hero-wave">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C57.32,118.92,163.89,91.2,321.39,56.44Z" class="shape-fill"></path>
+            </svg>
+        </div>
     </section>
 
-    <!-- OFICINAS -->
-    <section class="section" style="padding-top: 0;">
-      <div class="section-header reveal">
-        <div class="section-tag">Nossas Oficinas</div>
-        <h2 class="section-title">O que você vai aprender?</h2>
-        <p class="section-desc">Oficinas criadas para você começar do zero e ir além — com apoio, prática e comunidade.</p>
-      </div>
-      <div class="cards-grid">
-        <div class="workshop-card reveal">
-          <div class="card-icon">💻</div>
-          <h3>Programação</h3>
-          <p>Dê os primeiros passos com lógica de programação, HTML, CSS e JavaScript. Crie seu primeiro projeto do zero.</p>
-          <div class="tag-list">
-            <span class="chip">HTML &amp; CSS</span>
-            <span class="chip">JavaScript</span>
-            <span class="chip">Lógica</span>
-          </div>
+    <!-- NÚMEROS -->
+    <section class="relative z-10 -mt-6 pb-10">
+        <div class="container mx-auto px-4">
+            <div class="bg-white rounded-2xl shadow-lg grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-gray-100">
+                <div class="p-8 text-center"><div class="text-4xl md:text-5xl font-bold text-[#682857]" style="font-family:'Raleway',sans-serif">200+</div><p class="text-gray-600 mt-1">alunas impactadas</p></div>
+                <div class="p-8 text-center"><div class="text-4xl md:text-5xl font-bold text-[#682857]" style="font-family:'Raleway',sans-serif">3</div><p class="text-gray-600 mt-1">edições</p></div>
+                <div class="p-8 text-center"><div class="text-4xl md:text-5xl font-bold text-[#682857]" style="font-family:'Raleway',sans-serif">7</div><p class="text-gray-600 mt-1">professoras colaboradoras</p></div>
+                <div class="p-8 text-center"><div class="text-4xl md:text-5xl font-bold text-[#682857]" style="font-family:'Raleway',sans-serif">2</div><p class="text-gray-600 mt-1">bolsas PIBEX</p></div>
+            </div>
         </div>
-        <div class="workshop-card reveal d2">
-          <div class="card-icon">🤖</div>
-          <h3>Robótica</h3>
-          <p>Aprendizado criativo com montagem, eletrônica e resolução de problemas. Tecnologia nas suas mãos, literalmente.</p>
-          <div class="tag-list">
-            <span class="chip">Hardware</span>
-            <span class="chip">Criatividade</span>
-            <span class="chip">Prática</span>
-          </div>
-        </div>
-        <div class="workshop-card reveal d3">
-          <div class="card-icon">🌟</div>
-          <h3>Carreira Tech</h3>
-          <p>Currículo, LinkedIn, portfólio e tudo que você precisa para conquistar seu espaço no mercado de tecnologia.</p>
-          <div class="tag-list">
-            <span class="chip">LinkedIn</span>
-            <span class="chip">Portfólio</span>
-            <span class="chip">Mercado</span>
-          </div>
-        </div>
-      </div>
-      <div style="text-align:center; margin-top: 40px;" class="reveal">
-        <a href="oficinas.html" class="btn btn-ghost">Ver todas as oficinas →</a>
-      </div>
     </section>
 
-    <!-- QUOTE -->
-    <section class="quote-section">
-      <div class="quote-mark">"</div>
-      <p class="quote-text reveal">
-        Eu achava que tecnologia não era para mim. Depois da WomanTech, percebi que também posso aprender, criar projetos e fazer parte desse universo.
-      </p>
-      <span class="quote-author reveal">— Participante da 2ª edição</span>
+    <!-- O QUE FAZEMOS -->
+    <section class="py-20">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-[#682857] mb-4">O que fazemos</h2>
+                <div class="w-24 h-1 bg-[#8d5e81] mx-auto rounded-full mb-6"></div>
+                <p class="text-lg text-gray-600 max-w-3xl mx-auto">Alunas e professoras da FCI levam tecnologia para meninas e mulheres — com oficinas, materiais e uma rede de apoio.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <a href="projetos.html" class="card reveal bg-white p-8 rounded-xl shadow-md relative block">
+                    <div class="text-4xl text-[#682857] mb-4"><i class="fas fa-chalkboard-teacher"></i></div>
+                    <h3 class="text-xl font-bold mb-2">Oficinas práticas</h3>
+                    <p class="text-gray-600 mb-4">Encontros em ONGs e escolas públicas sobre programação, IA, segurança digital e pensamento computacional.</p>
+                    <span class="text-[#682857] font-bold">Ver projetos <i class="fas fa-arrow-right ml-1"></i></span>
+                </a>
+                <a href="materiais.html" class="card reveal bg-white p-8 rounded-xl shadow-md relative block">
+                    <div class="text-4xl text-[#682857] mb-4"><i class="fas fa-book-open"></i></div>
+                    <h3 class="text-xl font-bold mb-2">Materiais educacionais</h3>
+                    <p class="text-gray-600 mb-4">E-books gratuitos feitos pelas nossas alunas sobre algoritmos, gestão de projetos e inteligência artificial.</p>
+                    <span class="text-[#682857] font-bold">Baixar materiais <i class="fas fa-arrow-right ml-1"></i></span>
+                </a>
+                <a href="sobre.html" class="card reveal bg-white p-8 rounded-xl shadow-md relative block">
+                    <div class="text-4xl text-[#682857] mb-4"><i class="fas fa-hands-helping"></i></div>
+                    <h3 class="text-xl font-bold mb-2">Rede de apoio</h3>
+                    <p class="text-gray-600 mb-4">Conexão com mulheres de destaque em STEM e orientação em comunicação, pensamento crítico e carreira.</p>
+                    <span class="text-[#682857] font-bold">Conheça o projeto <i class="fas fa-arrow-right ml-1"></i></span>
+                </a>
+            </div>
+        </div>
     </section>
 
-    <!-- CTA -->
-    <section class="cta-section">
-      <div class="section-tag reveal">Faça parte</div>
-      <h2 class="reveal">Você não precisa saber tudo<br>para começar.</h2>
-      <p class="reveal">
-        Só precisa dar o primeiro passo. A tecnologia também pode ser o seu lugar —
-        e a WomanTech está aqui para te acompanhar nessa jornada.
-      </p>
-      <div class="cta-btns reveal">
-        <a href="contato.html" class="btn btn-primary">✦ Quero fazer parte</a>
-        <a href="sobre.html" class="btn btn-secondary">Conhecer o projeto</a>
-      </div>
+    <!-- PARCEIROS -->
+    <section class="pb-20">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-2xl font-bold text-[#682857] mb-8">Quem caminha com a gente</h2>
+            <div class="flex flex-wrap justify-center gap-4">
+                <span class="bg-white shadow-sm rounded-full px-6 py-3 font-bold text-gray-700"><i class="fas fa-laptop text-[#682857] mr-2"></i>Meninas Digitais · SBC</span>
+                <span class="bg-white shadow-sm rounded-full px-6 py-3 font-bold text-gray-700"><i class="fas fa-server text-[#682857] mr-2"></i>Equinix</span>
+                <span class="bg-white shadow-sm rounded-full px-6 py-3 font-bold text-gray-700"><i class="fas fa-shield-alt text-[#682857] mr-2"></i>Sec4U</span>
+                <span class="bg-white shadow-sm rounded-full px-6 py-3 font-bold text-gray-700"><i class="fas fa-heart text-[#682857] mr-2"></i>ONG CEPAC</span>
+                <span class="bg-white shadow-sm rounded-full px-6 py-3 font-bold text-gray-700"><i class="fas fa-landmark text-[#682857] mr-2"></i>Secretaria da Mulher</span>
+            </div>
+        </div>
     </section>
 
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="footer-logo-wrap">
-          <img src="imagens/logo.png" alt="WomanTech">
-          <span class="logo-text">WomanTech</span>
+    <!-- CHAMADA -->
+    <section class="pb-10">
+        <div class="container mx-auto px-4">
+            <div class="animated-bg bg-white rounded-2xl shadow-lg p-10 md:p-14 flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="relative z-10">
+                    <h2 class="text-3xl font-bold text-[#682857] mb-2">Quer levar o WomanTech para sua escola ou ONG?</h2>
+                    <p class="text-gray-600 text-lg">Ou quer fazer parte do projeto? Conta pra gente.</p>
+                </div>
+                <a href="contato.html" class="btn-primary relative z-10 px-8 py-3 rounded-full font-bold whitespace-nowrap">Fale com a gente</a>
+            </div>
         </div>
-        <p>Programa de extensão da Faculdade de Computação e Informática que inspira e capacita mulheres para o universo da tecnologia.</p>
-        <div class="social-row">
-          <a href="https://instagram.com/womantech_fci" target="_blank" rel="noopener" class="social-btn" title="Instagram">📸</a>
-          <a href="mailto:womantech.fci@gmail.com" class="social-btn" title="E-mail">✉️</a>
-        </div>
-      </div>
-      <div class="footer-col">
-        <h4>Páginas</h4>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="sobre.html">Sobre o Projeto</a></li>
-          <li><a href="oficinas.html">Oficinas</a></li>
-          <li><a href="equipe.html">Nossa Equipe</a></li>
-          <li><a href="contato.html">Contato</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Contato</h4>
-        <ul>
-          <li><a href="mailto:womantech.fci@gmail.com">womantech.fci@gmail.com</a></li>
-          <li><a href="https://instagram.com/womantech_fci" target="_blank" rel="noopener">@womantech_fci</a></li>
-          <li><a href="sobre.html">Meninas Digitais / SBC</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>© 2026 WomanTech — Aprender. Criar. Conectar. Transformar.</p>
-    </div>
-  </footer>
+    </section>
+    </main>
 
-  <script src="script.js"></script>
+    <div id="footer"></div>
 </body>
 </html>

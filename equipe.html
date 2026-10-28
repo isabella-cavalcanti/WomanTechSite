@@ -1,196 +1,61 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Equipe | WomanTech</title>
-  <meta name="description" content="Conheça a equipe de professoras e alunas que tornam a WomanTech possível." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipe - Woman Tech</title>
+    <meta name="description" content="Coordenação, professoras, bolsistas e voluntárias do WomanTech.">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=Raleway:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/dados-equipe.js"></script>
+    <script src="js/script.js"></script>
 </head>
-<body>
 
-  <!-- HEADER -->
-  <header class="header">
-    <a href="index.html" class="logo">
-      <img src="imagens/logo.png" alt="WomanTech">
-      <span class="logo-text">WomanTech</span>
-    </a>
-    <nav class="nav" id="nav">
-      <a href="index.html">Home</a>
-      <a href="sobre.html">Sobre</a>
-      <a href="oficinas.html">Oficinas</a>
-      <a href="equipe.html">Equipe</a>
-      <a href="contato.html">Contato</a>
-    </nav>
-    <button class="menu-btn" aria-label="Menu">☰</button>
-  </header>
+<body data-page="equipe">
+    <div id="header"></div>
 
-  <main>
-
-    <!-- PAGE HERO -->
-    <section class="page-hero">
-      <div class="page-hero-content">
-        <div class="section-tag">Quem faz acontecer</div>
-        <h1>Nossa <span class="gradient-text">Equipe</span></h1>
-        <p>Professoras dedicadas e alunas apaixonadas que trabalham juntas para inspirar mais mulheres a entrar na tecnologia.</p>
-      </div>
+    <main>
+    <section class="relative overflow-hidden bg-gradient-to-br from-[#682857] to-[#8d5e81] pt-40 pb-32">
+        <div class="blob bg-[#Ded9e2] w-72 h-72 -top-10 left-10 animate-pulse"></div>
+        <div class="blob bg-[#8d5e81] w-64 h-64 bottom-0 right-20 animate-pulse" style="animation-delay: 2s;"></div>
+        <div class="container mx-auto px-4 relative z-10 text-center text-white">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Nossa Equipe</h1>
+            <p class="text-lg md:text-xl opacity-90 max-w-3xl mx-auto">Conheça as pessoas incríveis que fazem o WomanTech acontecer — a cada semestre, novas alunas se juntam ao projeto.</p>
+        </div>
+        <div class="hero-wave">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C57.32,118.92,163.89,91.2,321.39,56.44Z" class="shape-fill"></path>
+            </svg>
+        </div>
     </section>
 
-    <!-- COORDENADORA -->
-    <section class="section">
-      <div class="section-header reveal">
-        <div class="section-tag">Liderança</div>
-        <h2 class="section-title">Coordenação do Projeto</h2>
-      </div>
-
-      <div class="coordinator-card reveal">
-        <div class="coord-avatar">👩‍🏫</div>
-        <div class="coord-info">
-          <h3>Profa. Dra. Marcilyanne Moreira Gois</h3>
-          <div class="coord-role">Coordenadora do Projeto</div>
-          <p>
-            Responsável pela criação e condução da WomanTech, a Profa. Marcilyanne lidera o programa desde sua fundação em 2024.
-            Com visão estratégica e compromisso com a inclusão feminina na tecnologia, ela articula parcerias com o programa
-            <strong>Meninas Digitais da SBC</strong> e coordena todas as edições do projeto junto à equipe de docentes e bolsistas.
-          </p>
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-14">
+                <div id="filtros-equipe" class="flex flex-wrap gap-3">
+                    <button class="filter-btn active px-5 py-2 rounded-full font-bold text-sm" data-filtro="todos">Todas</button>
+                    <button class="filter-btn px-5 py-2 rounded-full font-bold text-sm" data-filtro="coordenacao">Coordenação</button>
+                    <button class="filter-btn px-5 py-2 rounded-full font-bold text-sm" data-filtro="professora">Professoras</button>
+                    <button class="filter-btn px-5 py-2 rounded-full font-bold text-sm" data-filtro="aluna">Bolsistas e voluntárias</button>
+                    <button class="filter-btn px-5 py-2 rounded-full font-bold text-sm" data-filtro="ex-integrante">Já passaram por aqui</button>
+                </div>
+                <label class="flex items-center gap-3 text-gray-600">
+                    <i class="far fa-calendar text-[#682857]"></i>
+                    <select id="filtro-semestre" class="form-field !w-auto !py-2" aria-label="Filtrar por semestre"></select>
+                </label>
+            </div>
+            <div id="equipe-conteudo"></div>
         </div>
-      </div>
-
-      <!-- DIRETORIA -->
-      <div class="section-header reveal" style="margin-bottom: 32px;">
-        <div class="section-tag">Direção</div>
-        <h2 class="section-title" style="font-size: clamp(24px, 3vw, 36px);">Direção da Faculdade</h2>
-      </div>
-
-      <div style="max-width: 380px; margin: 0 auto 70px;" class="reveal">
-        <div class="team-card">
-          <div class="team-avatar">🎓</div>
-          <h3>Daniela Vieira Cunha</h3>
-          <span class="role">Diretora — FCI</span>
-        </div>
-      </div>
-
-      <!-- DOCENTES -->
-      <div class="section-header reveal" style="margin-bottom: 32px;">
-        <div class="section-tag">Corpo Docente</div>
-        <h2 class="section-title" style="font-size: clamp(24px, 3vw, 36px);">Professoras envolvidas</h2>
-        <p class="section-desc">Sete professoras dedicadas que fazem a WomanTech acontecer em cada edição.</p>
-      </div>
-
-      <div class="team-grid">
-        <div class="team-card reveal">
-          <div class="team-avatar">👩‍💻</div>
-          <h3>Andreia Cristina dos Santos Gusmão</h3>
-          <span class="role">Docente</span>
-        </div>
-        <div class="team-card reveal d1">
-          <div class="team-avatar">👩‍🔬</div>
-          <h3>Carolina Toledo Ferraz</h3>
-          <span class="role">Docente</span>
-        </div>
-        <div class="team-card reveal d2">
-          <div class="team-avatar">👩‍🏫</div>
-          <h3>Cristiane Camilo Hernandez</h3>
-          <span class="role">Docente</span>
-        </div>
-        <div class="team-card reveal d3">
-          <div class="team-avatar">💡</div>
-          <h3>Débora Bezerra Linhares Libório</h3>
-          <span class="role">Docente</span>
-        </div>
-        <div class="team-card reveal d4">
-          <div class="team-avatar">🌟</div>
-          <h3>Patricia Bonezi Nunes da Mota</h3>
-          <span class="role">Docente</span>
-        </div>
-      </div>
     </section>
+    </main>
 
-    <!-- BOLSISTAS E VOLUNTÁRIAS -->
-    <section class="section" style="padding-top: 0; background: var(--bg-2); border-top: 1px solid var(--glass-border);">
-      <div style="padding-top: 100px;">
-        <div class="section-header reveal">
-          <div class="section-tag">Bolsistas &amp; Voluntárias</div>
-          <h2 class="section-title">Alunas que fazem a diferença</h2>
-          <p class="section-desc">
-            Alunas da Faculdade de Computação e Informática que, como bolsistas PIBEX ou voluntárias,
-            dedicam seu tempo para inspirar outras mulheres.
-          </p>
-        </div>
-
-        <div class="team-grid" style="max-width: 800px; margin: 0 auto;">
-          <div class="team-card reveal">
-            <div class="team-avatar" style="background: linear-gradient(135deg, rgba(236,72,153,0.25), rgba(139,92,246,0.25));">✨</div>
-            <h3>Glenda Miléo Trigo</h3>
-            <span class="role">Bolsista PIBEX</span>
-          </div>
-          <div class="team-card reveal d2">
-            <div class="team-avatar" style="background: linear-gradient(135deg, rgba(236,72,153,0.25), rgba(139,92,246,0.25));">🚀</div>
-            <h3>Júlia Leite Furlan</h3>
-            <span class="role">Bolsista PIBEX</span>
-          </div>
-          <div class="team-card reveal d3">
-            <div class="team-avatar" style="background: linear-gradient(135deg, rgba(236,72,153,0.25), rgba(139,92,246,0.25));">💫</div>
-            <h3>Marina Lucas Martins</h3>
-            <span class="role">Voluntária</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="cta-section">
-      <div class="section-tag reveal">Faça parte</div>
-      <h2 class="reveal">Quer ser <span class="gradient-text">voluntária</span>?</h2>
-      <p class="reveal">Se você é aluna da FCI e quer contribuir com o projeto, entre em contato. Precisamos de você!</p>
-      <div class="cta-btns reveal">
-        <a href="contato.html" class="btn btn-primary">✦ Entrar em contato</a>
-        <a href="sobre.html" class="btn btn-secondary">Sobre o projeto</a>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="footer-logo-wrap">
-          <img src="imagens/logo.png" alt="WomanTech">
-          <span class="logo-text">WomanTech</span>
-        </div>
-        <p>Programa de extensão da Faculdade de Computação e Informática que inspira e capacita mulheres para o universo da tecnologia.</p>
-        <div class="social-row">
-          <a href="https://instagram.com/womantech_fci" target="_blank" rel="noopener" class="social-btn" title="Instagram">📸</a>
-          <a href="mailto:womantech.fci@gmail.com" class="social-btn" title="E-mail">✉️</a>
-        </div>
-      </div>
-      <div class="footer-col">
-        <h4>Páginas</h4>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="sobre.html">Sobre o Projeto</a></li>
-          <li><a href="oficinas.html">Oficinas</a></li>
-          <li><a href="equipe.html">Nossa Equipe</a></li>
-          <li><a href="contato.html">Contato</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Contato</h4>
-        <ul>
-          <li><a href="mailto:womantech.fci@gmail.com">womantech.fci@gmail.com</a></li>
-          <li><a href="https://instagram.com/womantech_fci" target="_blank" rel="noopener">@womantech_fci</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>© 2026 WomanTech — Aprender. Criar. Conectar. Transformar.</p>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
+    <div id="footer"></div>
 </body>
 </html>

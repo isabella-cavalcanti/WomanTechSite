@@ -1,0 +1,344 @@
+:root {
+    --primary: #682857;
+    --secondary: #8d5e81;
+    --light-gray: #D3d3d3;
+    --lighter-gray: #Ded9e2;
+    --white-gray: #F5f5f5;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'PT Sans', sans-serif;
+    background-color: var(--white-gray);
+    color: #333;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+}
+
+.hero-wave {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    overflow: visible;
+    line-height: 0;
+    z-index: 1;
+}
+
+.hero-wave svg {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 80px;
+}
+
+.hero-wave .shape-fill {
+    fill: var(--white-gray);
+}
+
+.blob {
+    position: absolute;
+    z-index: 0;
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: 0.6;
+}
+
+/* ── Navegação ───────────────────────────── */
+.nav-link {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: var(--primary);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+.nav-link.active {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+/* ── Cards ───────────────────────────────── */
+.card {
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(104, 40, 87, 0.2);
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--primary);
+    opacity: 0.1;
+    z-index: 0;
+    transition: all 0.5s ease;
+}
+
+.card:hover::before {
+    transform: scale(10);
+    opacity: 0.05;
+}
+
+.card > * {
+    position: relative;
+    z-index: 1;
+}
+
+.team-card {
+    width: 15rem;
+    transition: all 0.3s ease;
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+}
+
+.team-card .overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(104, 40, 87, 0.92), transparent);
+    overflow: hidden;
+    width: 100%;
+    height: 0;
+    transition: .5s ease;
+}
+
+.team-card:hover .overlay,
+.team-card:focus-within .overlay {
+    height: 100%;
+}
+
+.social-icon {
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: translateY(-5px);
+}
+
+.animated-bg {
+    position: relative;
+    overflow: hidden;
+}
+
+.animated-bg::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg,
+        rgba(141, 94, 129, 0.1) 0%,
+        rgba(104, 40, 87, 0.1) 25%,
+        rgba(222, 217, 226, 0.1) 50%,
+        rgba(211, 211, 211, 0.1) 75%,
+        rgba(245, 245, 245, 0.1) 100%);
+    animation: rotate 10s linear infinite;
+    z-index: 0;
+}
+
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: white;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: all 0.6s ease;
+    z-index: -1;
+}
+
+.btn-primary:hover::before {
+    left: 100%;
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(104, 40, 87, 0.3);
+}
+
+.project-card {
+    background: #fff;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(104, 40, 87, 0.18);
+}
+
+.project-card img {
+    transition: all 0.5s ease;
+}
+
+.project-card:hover img {
+    transform: scale(1.06);
+}
+
+.publication-card {
+    transition: all 0.3s ease;
+}
+
+.publication-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(104, 40, 87, 0.2);
+}
+
+.contact-icon {
+    transition: all 0.3s ease;
+}
+
+.contact-icon:hover {
+    transform: scale(1.1);
+    color: var(--primary);
+}
+
+.footer-wave {
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 100%;
+    overflow: visible;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.footer-wave svg {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 70px;
+}
+
+.footer-wave .shape-fill {
+    fill: var(--white-gray);
+}
+
+/* ── Filtros (Equipe / Projetos) ──────────── */
+.filter-btn {
+    background: #fff;
+    color: var(--primary);
+    border: 2px solid var(--lighter-gray);
+    transition: all 0.25s ease;
+}
+
+.filter-btn:hover {
+    border-color: var(--secondary);
+}
+
+.filter-btn.active {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #fff;
+}
+
+/* ── Linha do tempo (Sobre) ───────────────── */
+.timeline {
+    position: relative;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 11px;
+    top: 6px;
+    bottom: 6px;
+    width: 2px;
+    background: var(--lighter-gray);
+}
+
+.timeline-dot {
+    position: absolute;
+    left: 4px;
+    top: 4px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--primary);
+    box-shadow: 0 0 0 4px var(--white-gray);
+}
+
+/* ── Formulário ───────────────────────────── */
+.form-field {
+    width: 100%;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    padding: 0.6rem 1rem;
+    background: #fff;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.form-field:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(104, 40, 87, 0.2);
+}
+
+/* Animação de entrada */
+.reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .animated-bg::before, .animate-ping, .animate-pulse { animation: none; }
+}
