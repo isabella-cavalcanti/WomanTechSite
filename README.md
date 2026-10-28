@@ -2,7 +2,7 @@
 
 Site do **WomanTech**, programa de extensão da Faculdade de Computação e Informática do Mackenzie que inspira, capacita e conecta mulheres que querem dar os primeiros passos na tecnologia.
 
-🔗 **Acesse:** https://isabella-cavalcanti.github.io/womanteste/
+🔗 **Acesse:** https://isabella-cavalcanti.github.io/WomanTechSite/
 
 > 🚧 Site em reformulação.
 
