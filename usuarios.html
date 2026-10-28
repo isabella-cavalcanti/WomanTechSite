@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuários - Woman Tech</title>
+    <meta name="robots" content="noindex">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=Raleway:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/auth.js" defer></script>
+    <script src="js/usuarios.js" defer></script>
+</head>
+
+<body data-page="usuarios">
+    <div id="header"></div>
+
+    <main class="pt-32 pb-16 min-h-screen">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-8">
+                <div>
+                    <a href="area.html" class="text-sm font-bold text-[#8d5e81] hover:underline"><i class="fas fa-arrow-left mr-1"></i>Minha área</a>
+                    <h1 class="text-3xl font-bold text-[#682857] mt-2">Usuários</h1>
+                    <p class="text-gray-600">Defina o papel e as permissões de cada pessoa. A mudança vale no próximo acesso dela.</p>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <input id="busca" type="search" class="form-field sm:!w-72" placeholder="Buscar por nome ou e-mail" aria-label="Buscar">
+                    <select id="filtro-papel" class="form-field sm:!w-48" aria-label="Filtrar por papel">
+                        <option value="">Todos os papéis</option>
+                        <option value="aluna">Alunas</option><option value="integrante">Integrantes</option>
+                        <option value="lider">Team líderes</option><option value="admin">Admins</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-8 items-start">
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                    <div id="contagem" class="px-6 py-4 border-b border-gray-100 text-sm text-gray-500"></div>
+                    <div id="lista-usuarios" class="divide-y divide-gray-100"></div>
+                </div>
+                <aside class="bg-white rounded-2xl shadow-lg p-6 text-sm text-gray-600 space-y-3 lg:sticky lg:top-28">
+                    <h2 class="font-bold text-[#682857] text-base">Como funciona</h2>
+                    <p><b>Papéis</b> — cada um inclui tudo do anterior:</p>
+                    <ol class="space-y-1 list-decimal list-inside">
+                        <li><b>Aluna:</b> cursos e carreira</li>
+                        <li><b>Integrante:</b> + portal das integrantes</li>
+                        <li><b>Team líder:</b> + tarefas e entregas do grupo</li>
+                        <li><b>Admin:</b> tudo, inclusive esta página</li>
+                    </ol>
+                    <p><b>Permissões extras</b> liberam uma função específica sem dar acesso de admin — por exemplo, <i>Mentora de carreira</i> para uma professora.</p>
+                    <p class="text-xs text-gray-400">O site nunca fica sem pelo menos uma admin.</p>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer"></div>
+</body>
+</html>

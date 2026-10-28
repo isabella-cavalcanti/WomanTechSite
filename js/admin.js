@@ -4,87 +4,27 @@
  * ============================================================= */
 (function () {
     const $ = id => document.getElementById(id);
-    const telas = ["tela-config", "tela-login", "tela-nova-senha", "tela-painel"];
-    function mostrarTela(id) {
-        telas.forEach(t => $(t).classList.toggle("hidden", t !== id));
-    }
+    const aviso = mostrarAviso;
 
-    function aviso(el, msg, tipo) {
-        el.className = "mt-2 rounded-lg px-4 py-3 text-sm " +
-            (tipo === "ok" ? "bg-green-50 text-green-800" : tipo === "erro" ? "bg-red-50 text-red-800" : "bg-[#Ded9e2] text-[#682857]");
-        el.textContent = msg;
-        el.hidden = !msg;
-    }
-
-    if (!supabaseConfigurado() || !window.supabase) {
-        mostrarTela("tela-config");
-        return;
-    }
-
-    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     const BUCKET = "projetos";
-
+    let sb = null;
     let projetos = [];
     let editando = null;          // projeto sendo editado (ou null)
     let fotoNova = null;          // Blob já redimensionado
     let fotoRemovida = false;
     let confirmandoApagar = null; // id aguardando confirmação
 
-    /* ── Login ─────────────────────────────────────────────── */
-    async function verificarSessao() {
-        const { data: { session } } = await sb.auth.getSession();
-        if (!session) return mostrarTela("tela-login");
-
-        const { data: admin, error } = await sb.from("admins").select("nome").eq("user_id", session.user.id).maybeSingle();
-        if (error || !admin) {
-            await sb.auth.signOut();
-            mostrarTela("tela-login");
-            return aviso($("login-status"), "Esta conta não tem permissão de administradora. Fale com a coordenação.", "erro");
-        }
-        $("admin-nome").textContent = admin.nome || session.user.email;
-        mostrarTela("tela-painel");
+    async function iniciar() {
+        const perfil = await Auth.exigir({ permissao: "publicar_projetos" });
+        if (!perfil) return;
+        sb = Auth.sb;
+        $("admin-nome").textContent = perfil.nome || perfil.email;
+        $("tela-painel").classList.remove("hidden");
         prepararFormulario();
         carregarLista();
     }
 
-    $("form-login").addEventListener("submit", async e => {
-        e.preventDefault();
-        if (!e.target.reportValidity()) return;
-        const status = $("login-status");
-        aviso(status, "Entrando…", "info");
-        const { error } = await sb.auth.signInWithPassword({
-            email: $("login-email").value.trim(),
-            password: $("login-senha").value
-        });
-        if (error) return aviso(status, "E-mail ou senha incorretos.", "erro");
-        aviso(status, "", "info");
-        verificarSessao();
-    });
-
-    $("btn-esqueci").addEventListener("click", async () => {
-        const status = $("login-status");
-        const email = $("login-email").value.trim();
-        if (!email) return aviso(status, "Digite seu e-mail acima e clique de novo em \"Esqueci minha senha\".", "info");
-        const { error } = await sb.auth.resetPasswordForEmail(email, { redirectTo: location.href.split("#")[0] });
-        aviso(status, error ? "Não foi possível enviar o e-mail agora." : "Se este e-mail tiver acesso, você vai receber um link para criar uma nova senha.", error ? "erro" : "ok");
-    });
-
-    sb.auth.onAuthStateChange(evento => {
-        if (evento === "PASSWORD_RECOVERY") mostrarTela("tela-nova-senha");
-    });
-
-    $("form-nova-senha").addEventListener("submit", async e => {
-        e.preventDefault();
-        if (!e.target.reportValidity()) return;
-        const { error } = await sb.auth.updateUser({ password: $("nova-senha").value });
-        if (error) return aviso($("nova-senha-status"), "Não foi possível salvar a senha. Tente de novo.", "erro");
-        verificarSessao();
-    });
-
-    $("btn-sair").addEventListener("click", async () => {
-        await sb.auth.signOut();
-        mostrarTela("tela-login");
-    });
+    $("btn-sair").addEventListener("click", Auth.sair);
 
     /* ── Formulário ────────────────────────────────────────── */
     function semestresDisponiveis() {
@@ -364,5 +304,5 @@
         }
     }
 
-    verificarSessao();
+    iniciar();
 })();

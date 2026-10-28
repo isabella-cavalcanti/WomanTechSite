@@ -48,6 +48,14 @@ function escapar(texto) {
     return div.innerHTML;
 }
 
+function mostrarAviso(el, msg, tipo) {
+    if (!el) return;
+    el.className = "mt-2 rounded-lg px-4 py-3 text-sm " +
+        (tipo === "ok" ? "bg-green-50 text-green-800" : tipo === "erro" ? "bg-red-50 text-red-800" : "bg-[#Ded9e2] text-[#682857]");
+    el.textContent = msg;
+    el.hidden = !msg;
+}
+
 /* ── Header e footer compartilhados ─────────────────────────── */
 function incluirHTML(id, arquivo) {
     const alvo = document.getElementById(id);
@@ -79,7 +87,20 @@ function iniciarMenu() {
         });
     }
 
-    if (["contato", "admin"].includes(pagina)) {
+    // Se já existe sessão salva, o botão "Entrar" vira "Minha área"
+    try {
+        const logada = Object.keys(localStorage).some(k => k.startsWith("sb-") && k.endsWith("-auth-token"));
+        if (logada) {
+            document.querySelectorAll('a[href="login.html"][data-page="login"]').forEach(a => {
+                a.href = "area.html";
+                a.dataset.page = "area";
+                a.innerHTML = a.innerHTML.replace("Entrar", "Minha área");
+                if (pagina === "area") a.classList.add("active");
+            });
+        }
+    } catch (e) { /* navegador sem localStorage */ }
+
+    if (["contato", "admin", "login", "area", "usuarios"].includes(pagina)) {
         document.getElementById("cta-contato")?.remove();
     }
 
